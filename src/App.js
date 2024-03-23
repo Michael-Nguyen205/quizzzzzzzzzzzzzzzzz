@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+// import LayoutDefault from "./Nav/Navdeffault";
+// import Home from "./PAGE/Home";
+import Allroutes from"./components/Allrouter";
 
 function App() {
+  console.log("sdasd");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <LayoutDefault />
+      <Home /> */}
+
+      <Allroutes/>
+
+
+
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
