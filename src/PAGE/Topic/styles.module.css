@@ -1,0 +1,48 @@
+
+
+.bodytoppic{
+
+position:absolute ;
+background-color: antiquewhite;
+width: 100%;
+
+}
+
+
+
+.bodytoppic .slider{
+
+background-color: black;
+
+width: 200px;
+    position: absolute;
+    /* left: 320px;
+    right: 320px; */
+    left: 10%;
+    top: 10vh;
+aspect-ratio: 4/6;
+border: 1px solid white;
+
+}
+
+
+.bodytoppic .slider:nth-child(1) {
+    transform: translateX(420px) ;
+    transform: scale(0.01) ; 
+    /* rotateY(-1deg) */
+    perspective :16px;
+}
+
+
+
+.bodytoppic .slider:nth-child(2){}
+
+.bodytoppic .slider:nth-child(3){}
+
+.bodytoppic .slider:nth-child(4){}
+
+.bodytoppic .slider:nth-child(5){}
+
+.bodytoppic .slider:nth-child(6){}
+
+.bodytoppic .slider:nth-child(7){}

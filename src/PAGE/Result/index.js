@@ -42,31 +42,49 @@ function Result() {
 
   const handleCheck = () => {
     console.log("Dữ liệu gộp:", mergedData);
+    console.log(" tổng câu:", totalAnswers);
+    
   };
+
+
+
+
+
+  let totalAnswers = mergedData.length
+
+
+
+
+let corectAnswer = 0; // Biến để đếm số câu trả lời đúng
+
+    // Kiểm tra từng câu trả lời
+    mergedData.forEach(item => {
+      if (item.correctAnswer === item.answer) { // Nếu câu trả lời đúng
+        corectAnswer++; // Tăng số câu trả lời đúng lên một
+      }
+    });
+
+
+
 
   return (
     <div>
-      <h1>Kết quả:</h1>
+      <h1>Kết quả:      </h1>
+
+     <h2> tổng số câu đúng {corectAnswer}/{totalAnswers} </h2>
+
       <div className={styles["result-list"]}>
         {mergedData.map((item, index) => (
           <div className={styles["result-item"]} key={index}>
             <p>
               Câu {index + 1}: {item.question}
               <span className={styles["result-tag"] + " " + (item.correctAnswer === item.answer ? styles["result-tag--true"] : styles["result-tag--false"])}>
-                {item.correctAnswer === item.answer ? " Đúng" : " Sai"}
+                {item.correctAnswer === item.answer ? " Đúng" : " Saii"}
               </span>
             </p>
 
 
-
-
-
-
-
             {item.answers.map((itemAns, indexAns) => {
-
-
-
 
               let className = "";
               let checked = null;
@@ -76,24 +94,17 @@ function Result() {
 
               }
 
-
                 
                 if (item.correctAnswer === indexAns) {
                   className = styles.resultitemresult;
                 }
               
 
-      
-
-
               return (
                 <div className={styles.resultanswer} key={indexAns }>
                   <input type="radio" checked={checked} disabled id={indexAns+1} />
                   <label htmlFor={indexAns+1} className={className}>{itemAns}  index:{indexAns} answer:{item.answer} crect {item.correctAnswer}</label>
-              
                 </div>
-
-                
               );
             })}
           </div>

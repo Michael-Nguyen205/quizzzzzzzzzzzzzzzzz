@@ -228,7 +228,7 @@ NavLink li[data-icon] {
 .content{
 
   text-align: center;
-  padding-top: 90px;
+  
 
 }
 .header{
@@ -244,9 +244,9 @@ height: 20vh;
 border-radius: 50px;
 margin: 5px;
   }
-  .header,
+ 
   .content {
-    padding: 20px; /* Padding cho header và content */
+   
   }
 
   

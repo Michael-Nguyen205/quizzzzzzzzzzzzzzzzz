@@ -1,0 +1,107 @@
+import React, { useEffect, useState } from "react"; // Import các hàm useEffect và useState từ thư viện React và bổ sung chú thích
+import { Link } from "react-router-dom";
+import { getListTopic } from "../../Services/TopicService";
+import styles from './styles.module.css';
+
+function Topic() {
+  const [topics, setTopics] = useState([]); // Khởi tạo state topics và hàm setTopics để cập nhật state và bổ sung chú thích
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await getListTopic(); // Gọi API để lấy danh sách chủ đề và bổ sung chú thích
+      setTopics(response); // Cập nhật state topics với dữ liệu từ API
+    };
+
+    fetchApi(); // Gọi hàm fetchApi khi component được render và bổ sung chú thích
+  }, []); // Sử dụng useEffect với mảng rỗng để đảm bảo fetchApi chỉ được gọi một lần khi component được render và bổ sung chú thích
+
+  console.log(topics);
+
+  return (
+
+
+    <div  className={styles.bodytoppic} >
+      {topics.length > 0 && (
+        <div>
+          {topics.map(item => (
+            <div key={item.id} className={styles.slider}>
+              <div className={styles.item}>
+                <h1>{item.name}  id:{item.id}</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <Link to={"/Quiz/" + item.id}>Làm bài</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Topic;
+
+
+
+
+
+
+
+
+
+.bodytoppic {
+    background-image: linear-gradient(to top right, #8B5CF6, #FFD700); 
+   /* background-color: rgba(0, 255, 255, 0.215); */
+    
+     margin: 0; /* Remove default margin */
+     display: flex; /* Use flexbox for layout */
+     justify-content: center; /* Horizontally center content */
+     align-items: center; /* Vertically center content */
+    
+ }
+ 
+ /* Styling for the slider */
+ 
+ .slider {
+     position: relative; /* Position relative to the parent */
+     width: 100%; /* Full width */
+    
+     /* overflow: hidden; Hide overflow content */
+ }
+ 
+ 
+ 
+ 
+ /* Styling for the slider items */
+ .slider .item {
+    
+    width: 250px; /* Set width */
+  
+   
+     background-color: #fff; /* Set background color */
+     border-radius: 100px; /* Set border radius */
+     padding: 20px; /* Set padding */
+     transition: 0.5s; /* Set transition duration */
+     left: -215px; /* Center horizontally */
+     top: 0; /* Align to the top */
+ aspect-ratio: 6/4;
+ }
+ /* Styling for the next and previous buttons */
+ #next,
+ #prev {
+     position: absolute; /* Position absolute */
+     top: 40%; /* Align vertically at 40% from the top */
+     color: #fff; /* Text color */
+     background-color: transparent; /* Transparent background */
+     border: none; /* No border */
+     font-size: xxx-large; /* Large font size */
+     font-family: monospace; /* Monospace font */
+     font-weight: bold; /* Bold font weight */
+     left: 50px; /* Set initial position for both */
+ }
+ 
+ /* Styling specifically for the next button */
+ #next {
+     left: unset; /* Unset left position */
+     right: 50px; /* Set right position */
+ }
+ 
