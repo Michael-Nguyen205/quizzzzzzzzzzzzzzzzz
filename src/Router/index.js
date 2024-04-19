@@ -25,7 +25,7 @@ export const routes = [
         element: <Home/>
       },
       {
-        path: "/Login",
+        path: "/login",
         element: <Login/>
       },
       {

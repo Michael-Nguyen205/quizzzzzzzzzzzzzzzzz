@@ -9,6 +9,7 @@ export const get = async ( path) => {
 };
 
 
+
 export const post = async (path,id) => {
   const response = await fetch(API_DOMAIN + path, {
     method: "POST",

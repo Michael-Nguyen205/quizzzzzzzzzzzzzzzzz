@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Butterfly+Kids&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=Pacifico&display=swap');
+
+
+
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none; /* Loại bỏ viền khi focus */
+    margin-right: 5px; /* Khoảng cách giữa nút và nhãn */
+  }
+  
+  .label {
+
+    cursor: pointer;
+    
+   
+    display: block;
+
+    /* padding: 40px 180px;
+    padding-top: 10px ; */
+
+    width: 57vw;
+    font-size: 20px;
+  
+    justify-content: center;
+    align-items: center;
+padding-top: 21px;
+padding-bottom: 19px;
+
+background-color: rgba(0, 0, 0, 0.344); /* Màu trắng với độ trong suốt 50% */
+backdrop-filter: blur(0.2px); /* Hiệu ứng mờ với bán kính là 8px */
+
+    transition: 0.5s;
+
+    border-radius: 20px;  
+    margin: 8px;
+
+}
+
+
+.label:hover{
+
+    background-color: rgba(106, 75, 136, 0.616); /* Màu trắng với độ trong suốt 50% */
+
+transform: scale(1.07);
+transition: 0.4s;
+
+}
+
+.checked{
+
+    background-color: rgba(107, 89, 123, 0.616); /* Màu trắng với độ trong suốt 50% */
+    border-radius: 20px;  
+    transform: scale(1.07);
+    transition: 0.7s;
+    animation: zoomIn 0.5s ease ; /* Sử dụng animation zoomIn */
+    color: #f0e1ef;
+    box-shadow: 0 0 5px #987c9d, 0 0 25px #816490, 0 0 20px #7b6977, 0 0 10px #755d88;
+
+}
+
+
+
+
+
+
+@keyframes zoomIn {
+    0% {
+      transform: scale(1.09); /* Kích thước ban đầu */
+      background: #ad75d0af;
+      color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #e1a3ec,
+                  0 0 25px #a658ce,
+                  0 0 50px #bd5ba9,
+                  0 0 100px #755d88;
+      
+    }
+    100% {
+      transform: scale(1.06); /* Phóng to lên 110% */
+      background-color: rgba(129, 91, 162, 0.616);
+      box-shadow: 0 0 5px #987c9d, 0 0 25px #816490, 0 0 20px #7b6977, 0 0 10px #755d88;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.label:focus{
+    background-color: rgba(43, 26, 59, 0.616); /* Màu trắng với độ trong suốt 50% */
+
+}
+
+
+
+
+.Col{
+ 
+    /* background-color: #c944443f; */
+height: 7vh;
+margin: 5px;
+
+}
+.Row{
+padding: 0px 10vw;
+
+}
+
+.Quizz{
+    margin-top: 60px;
+    /* background-color: rgb(242, 240, 255); */
+    padding: 20px;
+   
+}
+
+
+
+
+
+
+
+
+  .topiccc{
+
+padding: 20px;
+
+font-size: 70px;
+
+
+justify-content: left;
+border-bottom: 10px black;
+
+color: antiquewhite;
+
+font-family: "Butterfly Kids", cursive;
+
+
+  }
+
+
+
+
+
+/* 
+  .onSubmit{
+
+    margin-top: 70px;
+margin-right: 5px;
+
+width: 20%;
+aspect-ratio: 7/3;
+border-radius: 20px;
+background-color: blueviolet;
+color: #fff;
+font-size: 20px;
+
+  } */
+
+
+
+  .onSubmit{
+
+    margin-top: 70px;
+margin-right: 5px;
+
+width: 20%;
+aspect-ratio: 7/3;
+border-radius: 20px;
+background-color: rgba(137, 43, 226, 0.72);
+color: #fff;
+font-size: 20px;
+
+transition: 1s;
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+  .onSubmit:hover{
+cursor: pointer;
+
+background: #9d7bb195;
+    color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 5px #c1acdd,
+                0 0 25px #a27bb6,
+                0 0 50px #b277ab,
+                0 0 100px #9a91b4;
+transition: 0.5s;
+
+  }
+
+

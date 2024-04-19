@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import styles from './styles.module.css';
+import { Row, Col } from 'antd';
+
 import { useParams, useNavigate } from "react-router-dom";
 import { getTopic } from "../../Services/TopicService";
 import { getListQuestion } from "../../Services/getListQuestion";
 import { getCookie } from "../../helpers/cokkie";
 import { createAswers } from "../../Services/quizService";
-import styles from './styles.module.css';
+
+
 function Quiz() {
   const params = useParams();
   const [question, setQuestion] = useState([]);
@@ -12,6 +16,7 @@ function Quiz() {
   const userId = getCookie("id");
   const topicId = params.id;
   const navigate = useNavigate();
+  const [selectedAnswers, setSelectedAnswers] = useState({});
 
   useEffect(() => {
     const fetchTopic = async () => {
@@ -33,8 +38,17 @@ function Quiz() {
     fetchQuestions();
   }, [params.id]);
 
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(e);
+    console.log(e.target[0].checked);
+
+    
 
     let answers = [];
     for (let i = 0; i < e.target.elements.length; i++) {
@@ -55,47 +69,80 @@ function Quiz() {
     };
 
     try {
-      const response = await createAswers(userData); // Gửi userData trực tiếp
+      const response = await createAswers(userData);
       console.log(response);
       if(response){
          navigate(`/Result/${response.id}`);
+         console.log(response.id );
       }
     } catch (error) {
       console.error("Error while submitting answers:", error);
     }
   };
 
+
+
+  const handleAnswerChange = (questionId, answerIndex) => {
+    setSelectedAnswers(prevState => ({
+      ...prevState,
+      [questionId]: answerIndex
+    }));
+
+    console.log("heeloo",questionId,answerIndex);
+    console.log(selectedAnswers);
+  };
+
+
+
+
+
+//   const checked = selectedAnswers.item.id;
+
   return (
-    <div>
-      <div>{topics[0]?.name}</div>
+    <div className={styles.quizzbody} >
       <form onSubmit={handleSubmit}>
         <div>
+        <div className={styles.topiccc} >{topics[0]?.name}</div>
           {question ? (
             question.map((item, index) => (
-              <div key={item.id}>
-                <p>{index + 1} {item.question}</p>
-                <ul>
+              <div  key={item.id}>
+                <h1 className={styles.Quizz} >{index + 1} {item.question}</h1>
+                <Row gutter={[16, 16]}className={styles.Row} >
                   {item.answers.map((answeritem, indexanswer) => (
-                    <div key={indexanswer}>
-                      <input
+                    <Col key={indexanswer} xxl={24} xl={24} lg={24} md={24} sm={24} className={styles.Col}>
+                      <input tabindex="0"
                         type="radio"
                         name={item.id}
                         value={indexanswer}
                         id={`${index}-${indexanswer}`}
+                        onChange={() => handleAnswerChange(item.id, indexanswer)}
+                        
                       />
-                      <label htmlFor={`${index}-${indexanswer}`}>
-                        {answeritem}
+                      <label   className={`${styles.label} ${selectedAnswers[item.id] === indexanswer ? styles.checked : ''}`} htmlFor={`${index}-${indexanswer}`}>
+                        {answeritem}  
+                        {/* {item.id}  {selectedAnswers[item.id]}   {indexanswer} */}
                       </label>
-                    </div>
+
+
+
+
+
+
+                    </Col>
                   ))}
-                </ul>
+                </Row>
               </div>
             ))
           ) : (
             <div>Không có câu hỏi nào.</div>
           )}
         </div>
-        <button type="submit">Submit</button>
+
+
+        <div >
+        <button className={styles.onSubmit}type="submit">Submit</button>
+        </div>
+      
       </form>
     </div>
   );

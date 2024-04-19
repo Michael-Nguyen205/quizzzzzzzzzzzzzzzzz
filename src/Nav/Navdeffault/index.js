@@ -86,11 +86,14 @@ function LayoutDefault() {
  */}
 
 <div className={styles.background} >
-     <img src="https://st2.depositphotos.com/1793519/50734/i/450/depositphotos_507343692-stock-photo-render-abstract-pink-blue-neon.jpg"/>
-   
 
+
+<div class={styles.anime}></div>
+
+     <img src="https://st2.depositphotos.com/1793519/50734/i/450/depositphotos_507343692-stock-photo-render-abstract-pink-blue-neon.jpg"/>
+     
      <div className={styles.blur} >
-     <div class={styles.anime}></div>
+ 
 
 
     </div>
@@ -364,6 +367,7 @@ HÃY CÙNG TÔI LÀM NHỮNG BÀI TEST EXAM THỨ VỊ NÀY NHÉ
 
 
 <div className={styles.content} >
+
 <main className="layout-default-main">
                 <Outlet />
    </main>

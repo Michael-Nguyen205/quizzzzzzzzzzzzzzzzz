@@ -9,12 +9,12 @@
 }
 
 .topic-table th, .topic-table td {
-  border: 1px solid #dbd0e6;
+  border: 1px solid #9f9f9f;
   padding: 8px;
   text-align: left;
-  background-color: #bababa;
+  background-color: #2f0e36;
 }
 
 .topic-table th {
-  background-color: #8c8c8c;
+  background-color: #341639;
 }

@@ -1,44 +1,14 @@
 
-
-
+import "./styles.module.css"
 function Home() {
-  
+
 
   return (
    
        <div>
 
-{/* 
-
-<div className={styles. }>
 
 
-<div className={styles. }>
-
-
-
-
-</div>
-
-
-
-
-<div className={styles. }>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-</div> */}
 
 
 ldhsgflkhweiulfhasiluehfiluakshfulahefiluawehfiulhwaeiufhaweiufhaweiufaw home hoem hoem

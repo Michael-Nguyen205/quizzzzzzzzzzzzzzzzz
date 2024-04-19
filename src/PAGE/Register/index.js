@@ -1,63 +1,134 @@
+import { useEffect } from 'react';
+import { register } from "../../Services/getLogin";
+import { useNavigate } from "react-router-dom";
+import { deleteAllCookies, setCookie, getCookie } from "../../helpers/cokkie";
+import { generateToken } from "../../helpers/Token";
 
-
-// import { checkExists, register } from "../services/usersService"; 
-// import { generateToken } from "../../helpers/generateToken"; // Import hàm generateToken từ module generateToken
-import { useNavigate } from "react-router-dom"; // Import hook useNavigate từ react-router-dom
+import { useDispatch } from "react-redux";
+import { checkLogin } from "../../actions/cart"; // Corrected import path
+import { useSelector } from 'react-redux';
+// import styles from './styles.module.css';
+import styles from './styles.module.css';
 
 function Register() {
-  const navigate = useNavigate(); // Sử dụng hook useNavigate để lấy hàm navigate
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
+  const check = useSelector(state => state.cartReducer.cartItems);
+  console.log(check[0]?.check);
+
+  const myCookieValue = getCookie("email");
+  console.log("Giá trị của cookie:", myCookieValue);
+
+  const handleCheck = () => {
+    const cookie = {
+       
+        // fullName: getCookie("fullName"),
+        // email: getCookie("email"),
+        // token: getCookie("token")
+      
+    };
+
+    console.log("kiểu tra cokkie",cookie);
+
+    console.log("kiểu tra cokkie");
+  };
 
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Ngăn chặn hành động mặc định của form
-    // const fullName = e.target[0].value; // Lấy giá trị của trường họ tên từ form
-    // const email = e.target[1].value; // Lấy giá trị của trường email từ form
-    // const password = e.target[2].value; // Lấy giá trị của trường mật khẩu từ form
+    e.preventDefault();
+    const fullName = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    const token = generateToken()
 
-    // const checkExistsEmail = await checkExists("email", email); // Kiểm tra xem email đã tồn tại hay chưa
+    console.log(email);
+    console.log(password);
+    console.log(fullName);
 
-    // if (checkExistsEmail.length > 0) { // Nếu email đã tồn tại
-    //   alert("Email đã tồn tại!");
-    // } else { // Nếu email chưa tồn tại
-    //   const options = { // Tạo options chứa thông tin người dùng
-    //     fullName: fullName,
-    //     email: email,
-    //     password: password,
-    //     token: generateToken(), // Tạo token ngẫu nhiên bằng cách gọi hàm generateToken
-    //   };
+    const dataregister = {
+        email: email,
+        password: password,
+        fullName: fullName,
+        token : token
+    };
+;
 
-    //   const response = await register(options); // Gửi yêu cầu đăng ký người dùng với các thông tin đã nhập
 
-    //   if (response) { // Nếu đăng ký thành công
-    //     navigate("/login"); // Chuyển hướng người dùng đến trang đăng nhập
-    //   } else {
-    //     alert("Đăng ký không thành công!"); // Hiển thị thông báo đăng ký không thành công
-    //   }
-    // }
-    
+    const response = await register(dataregister);
+
+
+    console.log(response);
+    if (response) {
+        alert(" đăng kí thành công!");
+        console.log("thanh cong");
+        // setCookie("id", response[0].id, 1);
+        // setCookie("fullName", response[0].fullName, 1);
+        // setCookie("email", response[0].email, 1);
+        // setCookie("token", response[0].token, 1);
+        navigate("/");
+    } else {
+        alert(" đăng kí thành công!");
+    }
   };
 
+  // Sử dụng useEffect để cập nhật trạng thái từ action khi nó thay đổi
+//   useEffect(() => {
+//     dispatch(checkLogin(false));
+//   }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Register</h2>
-      <div>
-        <input type="text" placeholder="Nhập fullName" />
-      </div>
-      <div>
-        <input type="email" placeholder="Nhập email" />
-      </div>
-       <div>
-        <input type="password" placeholder="Nhập mật khẩu" />
-       </div>
 
-      <button type="submit">Register</button> {/* Nút submit form */}
-    </form>
+
+
+
+
+    <div className={styles.login}>
+
+
+
+
+     <div className={styles.loginbox}>
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+        <div className={styles.userbox}>
+            <input type="" name="" required="" />
+            <label>Username</label>
+          </div>
+          <div className={styles.userbox}>
+            <input type="email" name="" required="" />
+            <label>Gmail</label>
+          </div>
+          <div className={styles.userbox}>
+            <input type="password" name="" required="" />
+            <label>Password</label>
+          </div>
+          
+
+          <button className={styles.submit} type="submit">Submit</button>
+        </form>
+      </div>
+
+    </div>
   );
 }
 
 export default Register;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

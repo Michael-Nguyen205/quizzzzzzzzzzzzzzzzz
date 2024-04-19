@@ -81,16 +81,17 @@ function Topic() {
   <Row gutter={[7, 7]}>
       {topics.length > 0 && (
         topics.map((item, index) => (
-          <Col key={item.id} className={`${styles.slider}`} span={8}>
+          <Col key={item.id} className={`${styles.slider}`} span={24}>
             <div className={`${styles.item}`}>
               <h1> topic:{index+1} {item.name}  id:{item.id}</h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <Link to={"/Quiz/" + item.id}>Làm bài</Link>
+              <Link to={"/Quiz/" + item.id}  className={styles.buttontoppic}    >Làm bài</Link>
             </div>
           </Col>
         ))
       )}
     </Row>
+
 
 <button id="next">Next</button>
 <button id="prev">Previous</button>
@@ -100,6 +101,9 @@ function Topic() {
 
 
 <Button type="button"  onClick={handleCheck}  >   kiểm tra data </Button>
+
+
+
 
     </div>
   );

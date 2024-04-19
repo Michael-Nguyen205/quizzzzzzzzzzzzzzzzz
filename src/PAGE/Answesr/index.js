@@ -91,20 +91,17 @@
 
 // export default Answesr;
 
-
-
-
-// Answer.js
 import React, { useEffect, useState } from "react";
 import { getListTopic } from "../../Services/TopicService";
 import { getAnswersByUserId } from "../../Services/getAnserByUserId";
-
+import { Link } from "react-router-dom";
 import styles from './styles.module.css';
-
 
 function Answer() {
   const [answers, setAnswers] = useState([]);
   const [topics, setTopics] = useState([]);
+  const [result, setResult] = useState([]);
+  const [selectedResultId, setSelectedResultId] = useState(null); // State for selected result id
 
   useEffect(() => {
     const fetchTopics = async () => {
@@ -129,18 +126,22 @@ function Answer() {
   }, []);
 
   const handleCheck = () => {
-    if (answers) {
+    if (answers && topics) {
       console.log("answers:", answers);
       console.log("topics:", topics);
+
+      var newResult = [];
+
+      for (let i = 0; i < answers.length; i++) {
+        newResult.push({ ...topics.find((item) => item.id === answers[i].topicId), ...answers[i] });
+      }
+
+      setResult(newResult);
     }
+  };
 
-    var result = [];
-
-    for (let i = 0; i < answers.length; i++) {
-      result.push({ ...topics.find((item) => item.id === answers[i].topicId), ...answers[i] });
-    }
-
-    console.log("result:", result);
+  const handleHover = (resultId) => {
+    setSelectedResultId(resultId); // Set selected result id on hover
   };
 
   return (
@@ -166,7 +167,10 @@ function Answer() {
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.name}</td>
-                  <td></td>
+                  <td>
+                    {/* Set hover handler */}
+                    <Link to={`/Result/${selectedResultId}`} onMouseEnter={() => handleHover(item.id)}>check điểm</Link>
+                  </td>
                 </tr>
               ))}
             </tbody>

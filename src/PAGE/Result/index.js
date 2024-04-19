@@ -1,4 +1,3 @@
-// Result.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAnswerById } from "../../Services/getAnserByUserId";
@@ -6,104 +5,251 @@ import { getListQuestion } from "../../Services/getListQuestion";
 import styles from './styles.module.css';
 
 function Result() {
+  // Get the parameter from the URL
   const params = useParams();
-  const [mergedData, setMergedData] = useState([]);
 
+  // States to hold data
+  const [mergedData, setMergedData] = useState([]);
+  const [dataAnswers, setDataAnswers] = useState([]);
+  const [dataQuestions, setDataQuestions] = useState([]);
+  const [status, setStatus] = useState(true);
+
+  // Fetch data from API
   useEffect(() => {
     const fetchApi = async () => {
-      const dataAnswers = await getAnswerById(params.id);
-      const dataQuestions = await getListQuestion(dataAnswers[0]?.topicId);
-
-      const mergeData = () => {
+      try {
+        const answers = await getAnswerById(params.id);
+        setDataAnswers(answers);
+  
+        const questions = await getListQuestion(answers[0]?.topicId);
+        setDataQuestions(questions);
+  
         let result = [];
+  
+        // Ensure both answers and questions are available before merging
+        if (answers.length > 0 && questions.length > 0) {
 
-        dataQuestions.forEach(question => {
-          const correspondingAnswer = dataAnswers.find(answer => answer.answers.some(a => a.questionId === question.id));
+
+
+          console.log("Data mergedData:", result); // Log merged data for debugging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          // const checking = answers.forEach(answer =>
+          //   answer.answers[0].some(a => a.questionId === question.id)
+          // ); 
           
-          if (correspondingAnswer) {
-            result.push({
-              questionId: question.id,
-              question: question.question,
-              answers: question.answers,
-              correctAnswer: question.correctAnswer,
-              answer: correspondingAnswer.answers.find(a => a.questionId === question.id)?.answer
-            });
-          }
-        });
+          // console.log("checking :",checking); // Log merged data for debugging
+          
+          // //-------------------------------------------------------------------
+          
+          // const checkingg2 = dataAnswers.some(answer =>
+          //   answer.answers[0].some(a => a.questionId === question.id)
+          // ); 
+          
+          // console.log("checkingg2 :",checkingg2); // Log merged data for deb
+          
 
-        return result;
-      };
 
-      setMergedData(mergeData());
+
+
+
+
+
+          questions.forEach(question => {
+
+
+            console.log("Data mergedData:", result); // Log merged data for debugging
+
+
+//-------------------------------------------------------------------
+
+console.log("Data :", answers.find(answer=>  answer.answers [0])); // Log merged data for debugging
+
+//-------------------------------------------------------------------
+
+console.log("Data ")
+
+//-------------------------------------------------------------------
+console.log("dataAnswers",dataAnswers )
+console.log("dataAnswers",question )
+// console.log("dataAnswers",dataAnswers[0].answers[0].questionId )
+console.log("dataAnswers",question.id )
+
+
+
+// const correspondingAnswer = dataAnswers.some(item =>
+//   item.answers.some(a => a.questionId === question.id)
+  
+// ) ;
+
+
+
+
+const checking = dataAnswers.forEach(answer =>
+  answer.answers.some(a => a.questionId === question.id)
+); 
+
+console.log("checking :",checking); // Log merged data for debugging
+
+//-------------------------------------------------------------------
+
+const checkingg2 = dataAnswers.find(answer =>
+  answer.answers.some(a => a.questionId === question.id)
+); 
+
+console.log("checkingg2 :",checkingg2); // Log merged data for deb
+
+//-------------------------------------------------------------------
+
+console.log(" phế quá ");
+
+
+console.log("Data :", result); // Log merged data for debugging
+console.log("Data :", result); // Log merged data for debugging
+
+
+
+const correspondingAnswer = dataAnswers.find(item =>
+  item.answers.find(a => a.questionId ===  parseInt(question.id))
+  
+) ;
+   console.log("check :", correspondingAnswer); 
+
+
+            if (correspondingAnswer) {
+
+
+              console.log("Data mergedData:", correspondingAnswer); // Log merged data for debugging
+              console.log("Data mergedData:"); 
+
+              result.push({
+                questionId: question.id,
+                question: question.question,
+                answers: question.answers,
+                correctAnswer: question.correctAnswer,
+                answer: correspondingAnswer.answers.find(
+                  a => a.questionId === parseInt( question.id)
+                )?.answer
+
+
+
+
+              });
+  
+              console.log("Data mergedData:", result); // Log merged data for debugging
+
+            }
+          });
+        }
+  
+        setMergedData(result);
+        console.log("Data mergedData:", result); // Log merged data for debugging
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
-
+  
     fetchApi();
-  }, [params.id]);
+  }, []); // Add params.id to dependency array if it's used inside useEffect
+  
 
+
+
+
+
+
+
+
+
+
+
+
+
+  // Function to handle checking data
   const handleCheck = () => {
-    console.log("Dữ liệu gộp:", mergedData);
-    console.log(" tổng câu:", totalAnswers);
-    
+    console.log("Data Answers:", dataAnswers);
+    console.log("Data Questions:", dataQuestions);
+    console.log("Data mergedData:", mergedData);
+
+
+
+    // console.log("Data Answers:", dataAnswers.answers[1].questionId);
+    // console.log("Data Questions:", dataQuestions.id);
+    console.log("Data mergedData:", mergedData);
+
+
+
+    setStatus(false);
   };
 
+  // Calculate total answers and correct answers
+  let totalAnswers = mergedData.length;
+  let correctAnswer = mergedData.filter(item => item.correctAnswer === item.answer).length;
 
 
 
 
-  let totalAnswers = mergedData.length
 
 
 
 
-let corectAnswer = 0; // Biến để đếm số câu trả lời đúng
 
-    // Kiểm tra từng câu trả lời
-    mergedData.forEach(item => {
-      if (item.correctAnswer === item.answer) { // Nếu câu trả lời đúng
-        corectAnswer++; // Tăng số câu trả lời đúng lên một
-      }
-    });
+
+
 
 
 
 
   return (
     <div>
-      <h1>Kết quả:      </h1>
-
-     <h2> tổng số câu đúng {corectAnswer}/{totalAnswers} </h2>
-
+      <h1>Kết quả:</h1>
+      <h2>Tổng số câu đúng: {correctAnswer}/{totalAnswers}</h2>
       <div className={styles["result-list"]}>
         {mergedData.map((item, index) => (
+
+
+
+
+
+
           <div className={styles["result-item"]} key={index}>
             <p>
               Câu {index + 1}: {item.question}
               <span className={styles["result-tag"] + " " + (item.correctAnswer === item.answer ? styles["result-tag--true"] : styles["result-tag--false"])}>
-                {item.correctAnswer === item.answer ? " Đúng" : " Saii"}
+                {item.correctAnswer === item.answer ? " Đúng" : " Sai"}
               </span>
             </p>
-
-
             {item.answers.map((itemAns, indexAns) => {
-
               let className = "";
               let checked = null;
-              if (item.answer === indexAns   ) {
+              if (item.answer === indexAns) {
                 checked = true;
                 className = styles.resultitemselected;
-
               }
-
-                
-                if (item.correctAnswer === indexAns) {
-                  className = styles.resultitemresult;
-                }
-              
-
+              if (item.correctAnswer === indexAns) {
+                className = styles.resultitemresult;
+              }
               return (
-                <div className={styles.resultanswer} key={indexAns }>
-                  <input type="radio" checked={checked} disabled id={indexAns+1} />
-                  <label htmlFor={indexAns+1} className={className}>{itemAns}  index:{indexAns} answer:{item.answer} crect {item.correctAnswer}</label>
+                <div className={styles.resultanswer} key={indexAns}>
+                  <input type="radio" checked={checked} disabled id={indexAns + 1} />
+                  <label htmlFor={indexAns + 1} className={className}>{itemAns}  index:{indexAns} answer:{item.answer} correct {item.correctAnswer}</label>
                 </div>
               );
             })}
@@ -111,9 +257,8 @@ let corectAnswer = 0; // Biến để đếm số câu trả lời đúng
         ))}
       </div>
       <button type="button" onClick={handleCheck}>
-        Kiểm tra data ansswer
+        Kiểm tra data answer
       </button>
-
     </div>
   );
 }

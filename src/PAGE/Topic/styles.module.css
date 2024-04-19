@@ -1,48 +1,50 @@
 
-
 .bodytoppic{
 
-position:absolute ;
-background-color: antiquewhite;
-width: 100%;
-
+    padding: 0 30px;
 }
 
 
+  .slider {
+    float: left;
+   
+    text-align: center;
+    transition: transform 0.5s ease;
+  }
+  
+  .item {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.439);
+    border-radius: 19px;
+    border: 2px solid rgba(124, 124, 124, 0.352);
+  }
+  
+  .active {
+    display: block;
+  }
+  .buttontoppic{
+    margin-left: 10px;
 
-.bodytoppic .slider{
+    width: 20%;
+    aspect-ratio: 7/3;
+    background-color: rgba(0, 0, 0, 0.536);
+    align-items: center;
+    justify-content:center;
+padding: 10px px;
+    font-size: 20px;
+    border-radius: 19px;
+    color: rgb(234, 220, 245);
+    transition: 0.5s;
 
-background-color: black;
+    border: 0.2px solid rgba(124, 124, 124, 0.307);
 
-width: 200px;
-    position: absolute;
-    /* left: 320px;
-    right: 320px; */
-    left: 10%;
-    top: 10vh;
-aspect-ratio: 4/6;
-border: 1px solid white;
+  }
+  
 
-}
+  .buttontoppic:hover{
 
-
-.bodytoppic .slider:nth-child(1) {
-    transform: translateX(420px) ;
-    transform: scale(0.01) ; 
-    /* rotateY(-1deg) */
-    perspective :16px;
-}
-
-
-
-.bodytoppic .slider:nth-child(2){}
-
-.bodytoppic .slider:nth-child(3){}
-
-.bodytoppic .slider:nth-child(4){}
-
-.bodytoppic .slider:nth-child(5){}
-
-.bodytoppic .slider:nth-child(6){}
-
-.bodytoppic .slider:nth-child(7){}
+    color: aliceblue;
+    text-decoration: none;
+    background-color: rgba(73, 42, 78, 0.581);
+cursor: pointer;
+  }

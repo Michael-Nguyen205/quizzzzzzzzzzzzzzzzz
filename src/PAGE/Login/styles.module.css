@@ -10,7 +10,7 @@ body {
     width: 100%;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 62%;
     width: 400px;
     padding: 40px;
     transform: translate(-50%, -50%);
@@ -94,6 +94,9 @@ cursor: pointer;
                 0 0 50px #f403d8,
                 0 0 100px #3f03f4;
   }
+  
+
+
   
    .loginbox .submit  {
     position: absolute;
